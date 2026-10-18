@@ -115,6 +115,14 @@
       yazi
       git
       uv
+  
+      # for helix LSP
+      unstable.ruff
+      unstable.ty
+      nil
+      nixfmt
+      rust-analyzer
+      typescript-language-server
     ];
   };
   users.users.hehs = {
