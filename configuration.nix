@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
-
+let
+  kdl-lsp = pkgs.rustPlatform.buildRustPackage rec {
+    pname = "kdl-lsp";
+    version = "6.5.0";
+    src = pkgs.fetchCrate {
+      inherit pname version;
+      hash = "sha256-YLoOmsQMvkzXhMLlK4e0P3nLmKxXWBXckyx0v/m3SqM=";
+    };
+    cargoHash = "sha256-iwc4DFsrgpVw3g1fPjFIROznVli/ooXJwKpZYwZmSOI=";
+  };
+in
 {
   system.stateVersion = "26.05";
   imports = [ ./hardware-configuration.nix ./modules ];
@@ -45,6 +55,7 @@
   };
   programs = {
     firefox.enable = true;
+    niri.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -104,6 +115,7 @@
       sing-box
       ddcutil
       python3
+      micro
       delta
       helix
       nixd
@@ -123,7 +135,23 @@
       nixfmt
       rust-analyzer
       typescript-language-server
-    ];
+      vscode-langservers-extracted
+      yaml-language-server
+      taplo
+      kdlfmt
+      kdl-lsp
+      marksman
+      markdown-oxide
+
+      # niri
+      xwayland-satellite 
+      alacritty
+      fuzzel
+      waybar
+      mako
+      hyprlock
+
+      ];
   };
   users.users.hehs = {
     isNormalUser = true;
@@ -148,17 +176,23 @@
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.fira-code
-      nerd-fonts.symbols-only
-      font-awesome
+      noto-fonts
+      noto-fonts-cjk-sans      # китайский/японский/корейский
+      noto-fonts-color-emoji   # эмодзи
+      liberation_ttf           # метрически совместимы с Arial/Times/Courier
+      fira-code
+      jetbrains-mono
+      nerd-fonts.jetbrains-mono  # иконки для терминала/панелей
     ];
     fontconfig = {
-      enable = true;
       defaultFonts = {
-        monospace = ["JetBrainsMono Nerd Font" "Dejavu Sans Mono"];
+        serif = [ "Noto Serif" "Liberation Serif" ];
+        sansSerif = [ "Noto Sans" "Liberation Sans" ];
+        monospace = [ "JetBrains Mono" "Noto Sans Mono" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };
+
 }
 
