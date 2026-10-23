@@ -107,6 +107,7 @@ in
     ];
     systemPackages = with pkgs; [
       unstable.amnezia-vpn
+      wl-gammarelay-rs
       wl-clipboard
       gnome-boxes
       freshfetch
@@ -126,7 +127,7 @@ in
       just
       yazi
       git
-      uv
+      unstable.uv
   
       # for helix LSP
       unstable.ruff
@@ -148,7 +149,6 @@ in
       alacritty
       fuzzel
       waybar
-      mako
       hyprlock
 
       ];
