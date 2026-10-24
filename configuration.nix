@@ -183,6 +183,7 @@ in
       fira-code
       jetbrains-mono
       nerd-fonts.jetbrains-mono  # иконки для терминала/панелей
+      nerd-fonts.symbols-only
     ];
     fontconfig = {
       defaultFonts = {
