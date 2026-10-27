@@ -11,8 +11,9 @@ in
 {
   environment.systemPackages = [
     craftapps.photocraft
-    craftapps.filmcraft
-    # Другие приложения из репозитория: lightcraft, effectcraft и т. д.
+    craftapps.wordcraft
+    craftapps.gridcraft
+    craftapps.pdfcraft
   ];
   hardware.graphics.enable = true;
   fonts.fontDir.enable = true;

@@ -53,9 +53,11 @@ in
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
   };
+  hardware.graphics.enable32Bit = true;
   programs = {
     firefox.enable = true;
     niri.enable = true;
+    gamemode.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -97,6 +99,7 @@ in
       gnome-user-docs
       gnome-contacts
       gnome-calendar
+      gnome-console
       gnome-weather
       gnome-clocks
       gnome-music
@@ -107,15 +110,17 @@ in
     ];
     systemPackages = with pkgs; [
       unstable.amnezia-vpn
+      wineWow64Packages.staging
       wl-gammarelay-rs
       wl-clipboard
       gnome-boxes
+      winetricks
       freshfetch
       obs-studio
-      rustdesk
       sing-box
       ddcutil
       python3
+      lutris
       micro
       delta
       helix
@@ -125,7 +130,6 @@ in
       htop
       dbus
       just
-      yazi
       git
       unstable.uv
   
@@ -150,24 +154,19 @@ in
       fuzzel
       waybar
       hyprlock
-
-      ];
+    ];
   };
   users.users.hehs = {
     isNormalUser = true;
     description = "Ислам Асабаев";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "i2c" ];
     packages = with pkgs; [
-      onlyoffice-desktopeditors
       gnomeExtensions.pano
       telegram-desktop
-      faugus-launcher
       gnome-tweaks
       vulkan-tools
       thunderbird
-      zed-editor
       obsidian
-      lutris
       vscode
       codex
       gh
@@ -177,12 +176,12 @@ in
     enableDefaultPackages = true;
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk-sans      # китайский/японский/корейский
-      noto-fonts-color-emoji   # эмодзи
-      liberation_ttf           # метрически совместимы с Arial/Times/Courier
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      liberation_ttf
       fira-code
       jetbrains-mono
-      nerd-fonts.jetbrains-mono  # иконки для терминала/панелей
+      nerd-fonts.jetbrains-mono
       nerd-fonts.symbols-only
     ];
     fontconfig = {
@@ -194,6 +193,5 @@ in
       };
     };
   };
-
 }
 
