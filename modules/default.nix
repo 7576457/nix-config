@@ -5,5 +5,6 @@
     # ./sing-box.nix
     ./happ-nixos/happ-module.nix
     ./nvidia-ddc.nix
+    ./greetd.nix
   ];
 }

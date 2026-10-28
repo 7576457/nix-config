@@ -56,7 +56,14 @@ in
   hardware.graphics.enable32Bit = true;
   programs = {
     firefox.enable = true;
-    niri.enable = true;
+    niri = {
+      enable = true;
+      useNautilus = true;
+    };
+    nautilus-open-any-terminal = {
+      enable = true;
+      terminal = "alacritty";
+    }; 
     gamemode.enable = true;
     steam = {
       enable = true;
@@ -75,8 +82,8 @@ in
     happ.enable = true;
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = false;
+    desktopManager.gnome.enable = false;
     printing.enable = true;
     pulseaudio.enable = false;
     pipewire = {
@@ -95,28 +102,18 @@ in
       rebuild = "sudo nixos-rebuild switch";
       edit = "sudo hx /etc/nixos/configuration.nix";
     };
-    gnome.excludePackages = with pkgs; [
-      gnome-user-docs
-      gnome-contacts
-      gnome-calendar
-      gnome-console
-      gnome-weather
-      gnome-clocks
-      gnome-music
-      gnome-maps
-      gnome-tour
-      epiphany
-      yelp
-    ];
     systemPackages = with pkgs; [
       unstable.amnezia-vpn
       wineWow64Packages.staging
+      adwaita-icon-theme
       wl-gammarelay-rs
       wl-clipboard
       gnome-boxes
       winetricks
       freshfetch
       obs-studio
+      nautilus
+      file-roller
       sing-box
       ddcutil
       python3
@@ -161,7 +158,6 @@ in
     description = "Ислам Асабаев";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "i2c" ];
     packages = with pkgs; [
-      gnomeExtensions.pano
       telegram-desktop
       gnome-tweaks
       vulkan-tools
@@ -183,6 +179,7 @@ in
       jetbrains-mono
       nerd-fonts.jetbrains-mono
       nerd-fonts.symbols-only
+      adwaita-fonts
     ];
     fontconfig = {
       defaultFonts = {
